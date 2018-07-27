@@ -1,5 +1,3 @@
-#/usr/bin/env python
-
 import sys
 
 
@@ -42,7 +40,9 @@ class Graph:
         @return {Vertex} the found Vertex
         """
         # !!!! IMPLEMENT ME
-        pass
+        vert = [v for v in self.vertices if v.value == value]
+
+        return vert[0]
 
     def bfs(self, start):
         """
@@ -52,7 +52,17 @@ class Graph:
         @param {Vertex} start: The starting vertex
         """
         # !!!! IMPLEMENT ME
-        pass
+        start.color = 'gray'
+        queue = [start]
+
+        while queue:
+            current = queue.pop(0)
+            for edge in current.edges:
+                vertex = edge.destination
+                if vertex.color == 'white':
+                    vertex.color = 'gray'
+                    vertex.parent = current
+                    queue.append(vertex)
 
     def output_route(self, start):
         """
@@ -62,7 +72,13 @@ class Graph:
         @param {Vertex} start: The starting Vertex to follow and print
         """
         # !!!! IMPLEMENT ME
-        pass
+        path = ''
+        while start:
+            path += start.value
+            if start.parent:
+                path += ' > '
+            start = start.parent
+        print(path)
 
     def route(self, start, end):
         # BFS to build the parent reference tree
