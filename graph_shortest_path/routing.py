@@ -41,8 +41,10 @@ class Graph:
         @return None if no such Vertex exists in the Graph.
         @return {Vertex} the found Vertex
         """
-        # !!!! IMPLEMENT ME
-        pass
+        for vertex in self.vertices:
+            if vertex.value == value:
+                return vertex
+            return None
 
     def bfs(self, start):
         """
@@ -50,9 +52,48 @@ class Graph:
         Should maintain parent references back from neighbors to their parent.
 
         @param {Vertex} start: The starting vertex
+
+        BFS(graph, startVert):
+          for v of graph.vertices:
+            v.color = white
+            v.parent = null   // <-- Add parent initialization
+
+          startVert.color = gray
+          queue.enqueue(startVert)
+
+          while !queue.isEmpty():
+            u = queue[0]
+
+            for v of u.neighbors:
+              if v.color == white:
+                v.color = gray
+                v.parent = u     // <-- Keep a parent link
+                queue.enqueue(v)
+
+            queue.dequeue()
+            u.color = black
         """
         # !!!! IMPLEMENT ME
-        pass
+        for vertex in self.vertices:
+            vertex.color = "white"
+            vertex.parent = None
+
+        queue = []
+        start.color = "gray"
+        queue.append(start)
+
+        while queue:
+            current_vertex = queue[0]
+
+            for vertex in vertex.edges:
+                if vertex.color == "white":
+                    vertex.color = "gray"
+                    vertex.parent = current_vertex
+                    queue.enqueue(vertex)
+
+            queue.dequeue()
+            current_vertex.color = "black"
+
 
     def output_route(self, start):
         """
