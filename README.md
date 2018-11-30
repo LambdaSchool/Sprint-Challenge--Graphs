@@ -40,7 +40,6 @@ There are two parts to this sprint challenge:
 
  * `graph_social_network`: You have been given skeleton code for a very simple social network. You will be filling out a function that shows a user every other user in their extended friend network and the chain of friendships that link them. For testing purposes, you will also be writing a function that creates a large number of users and creates a random distribution of friendships between them.
 
-
 ## Minimum Viable Product
 
 `graph_shortest_path` and `graph_social_network` are worth 10 points each, with a possible 4 extra points by completing the social network stretch goals. Stretch points will only be awarded if all other exercises have been completed. You will need to earn 14 points to reach MVP.
