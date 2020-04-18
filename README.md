@@ -43,7 +43,7 @@ You can find the path to the shortest unexplored room by using a breadth-first s
 
 2. BFS will return the path as a list of room IDs. You will need to convert this to a list of n/s/e/w directions before you can add it to your traversal path.
 
-If all paths have been explored, you're done!
+If all paths have been explored, you're done!/LambdaNotes/Sprint-Challenge--Hash-BC/blockchain/
 
 ## Minimum Viable Product
 
@@ -65,3 +65,4 @@ My best path is 957 moves. Can you find a shorter path?
 | **FINAL SCORE** | | **0-1** | **2** | **3** |  |
 
 
+Jason 
