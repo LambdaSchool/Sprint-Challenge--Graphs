@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from world import World
+from visitedgraph import VisitedGraph
 
 import random
 from ast import literal_eval
@@ -26,8 +27,30 @@ world.print_rooms()
 player = Player(world.starting_room)
 
 # Fill this out with directions to walk
-# traversal_path = ['n', 'n']
 traversal_path = []
+visited_graph = VisitedGraph()
+path_back_home = []
+
+# starting room
+current = world.starting_room
+visited_graph.add_room(current.id, current.get_exits())
+
+while len(visited_graph) < len(room_graph):
+    # get new direction
+    newdir = visited_graph.get_unexplored_exit_for_room(current.id)
+    if newdir is not None:
+        # going out, so record path back
+        path_back_home.append(visited_graph.invertDirection(newdir))
+    else:
+        # walk back up
+        newdir = path_back_home.pop()
+    # get the new room and connect with previous
+    prev = current
+    current = current.get_room_in_direction(newdir)
+    visited_graph.add_room(current.id, current.get_exits())
+    visited_graph.connect_rooms(prev.id, newdir, current.id)
+    # record what we did
+    traversal_path.append(newdir)
 
 
 
@@ -51,12 +74,12 @@ else:
 #######
 # UNCOMMENT TO WALK AROUND
 #######
-player.current_room.print_room_description(player)
-while True:
-    cmds = input("-> ").lower().split(" ")
-    if cmds[0] in ["n", "s", "e", "w"]:
-        player.travel(cmds[0], True)
-    elif cmds[0] == "q":
-        break
-    else:
-        print("I did not understand that command.")
+# player.current_room.print_room_description(player)
+# while True:
+#     cmds = input("-> ").lower().split(" ")
+#     if cmds[0] in ["n", "s", "e", "w"]:
+#         player.travel(cmds[0], True)
+#     elif cmds[0] == "q":
+#         break
+#     else:
+#         print("I did not understand that command.")
